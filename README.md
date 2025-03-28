@@ -1,129 +1,117 @@
 ```markdown
-# 📊 SIT737 - Building a Microservice  (Task 4.1P)
+# 📊 SIT737 - Calculator Microservice (4.2C)
 
-## 🧠 Overview
+## ✨ Overview
 
-This project is a simple calculator microservice built using Node.js, Express, and Winston. It supports basic arithmetic operations— addition, subtraction, multiplication, and division —and exposes them through RESTful API endpoints.
+This project extends the functionality of the calculator microservice developed in 4.1P. It adds advanced arithmetic operations such as exponentiation, square root, and modulo, along with robust error handling and Winston-based logging.
 
-It also includes robust logging using Winston to track all incoming requests and errors.
+✅ Built with Node.js and Express.js  
+✅ Enhanced with Winston logging  
+✅ Includes industry-standard error handling concepts
+
+🔗 GitHub Repository: https://github.com/Tillu6/sit737-2025-prac4c
+
+---
+
+## ⚙️ Tech Stack
+
+- Node.js
+- Express.js
+- Winston (Logging)
+- Git & GitHub
 
 ---
 
 ## 🚀 Getting Started
 
-### 🔧 Prerequisites
-- [Node.js](https://nodejs.org/en/)
-- [Git](https://git-scm.com/)
-- Code Editor (e.g., [VS Code](https://code.visualstudio.com/))
+### ✅ Prerequisites
+- Install [Node.js](https://nodejs.org/en/)
+- Install [Git](https://git-scm.com/)
+- Optional: Use [Postman](https://www.postman.com/) or your browser for testing
 
-### 📦 Installation
+### 📦 Installation & Running the App
 ```bash
-git clone https://github.com/Tillu6/sit737-2025-prac4p
-cd sit737-2025-prac4p
+git clone https://github.com/Tillu6/sit737-2025-prac4c
+cd sit737-2025-prac4c
 npm install
-```
-
-### ▶️ Running the App
-```bash
+mkdir logs
 node index.js
 ```
 
-You’ll see output like:
+You’ll see:
 ```
-info: Calculator microservice running on http://localhost:3000
+🚀 Calculator microservice running on http://localhost:3000
 ```
 
 ---
 
 ## 🌐 API Endpoints
 
-| Method | Endpoint                      | Description              |
-|--------|-------------------------------|--------------------------|
-| GET    | `/`                           | Welcome message          |
-| GET    | `/health`                     | Health check status      |
-| GET    | `/add?num1=10&num2=5`         | Returns 15               |
-| GET    | `/subtract?num1=10&num2=5`    | Returns 5                |
-| GET    | `/multiply?num1=10&num2=5`    | Returns 50               |
-| GET    | `/divide?num1=10&num2=5`      | Returns 2                |
+| Method | Endpoint | Description |
+|--------|----------|-------------|
+| GET | `/` | Welcome message |
+| GET | `/health` | Returns `{ status: "OK" }` |
+| GET | `/add?num1=10&num2=5` | Addition |
+| GET | `/subtract?num1=10&num2=5` | Subtraction |
+| GET | `/multiply?num1=10&num2=5` | Multiplication |
+| GET | `/divide?num1=10&num2=5` | Division |
+| GET | `/power?base=2&exp=3` | Exponentiation |
+| GET | `/sqrt?num=16` | Square Root |
+| GET | `/mod?num1=10&num2=3` | Modulo Operation |
 
 ---
 
-## 🧪 Example Test Cases
+## 🧪 Sample Usage
 
-### ✅ Valid Input
+### ✅ Valid Requests
+- `GET /add?num1=7&num2=3` → `{ "result": 10 }`
+- `GET /power?base=2&exp=5` → `{ "result": 32 }`
+- `GET /sqrt?num=25` → `{ "result": 5 }`
 
-```bash
-http://localhost:3000/add?num1=5&num2=3
-```
-**Response:**
-```json
-{ "result": 8 }
-```
-
-### ❌ Invalid Input
-
-```bash
-http://localhost:3000/add?num1=a&num2=5
-```
-**Response:**
-```json
-{ "error": "Invalid numbers provided." }
-```
-
-```bash
-http://localhost:3000/divide?num1=10&num2=0
-```
-**Response:**
-```json
-{ "error": "Cannot divide by zero" }
-```
+### ❌ Invalid Requests
+- `/add?num1=a&num2=3` → `{ "error": "Invalid numbers provided." }`
+- `/divide?num1=10&num2=0` → `{ "error": "Cannot divide by zero" }`
+- `/sqrt?num=-9` → `{ "error": "Invalid input for square root..." }`
 
 ---
 
-## 🛠 Logging (Using Winston)
+## 📂 Logging
 
-Winston logs are saved in the `logs/` directory:
+Using Winston, logs are saved in the `logs/` folder:
 
-| File Name        | Description                         |
-|------------------|-------------------------------------|
-| `combined.log`   | All info + error logs               |
-| `error.log`      | Only errors                         |
+| File | Description |
+|------|-------------|
+| `combined.log` | All logs (info + errors) |
+| `error.log` | Errors only |
 
-### 🔍 Sample Logs
-
-**combined.log**
+### 📝 Sample Logs
 ```
-info: Calculator microservice running on http://localhost:3000
-info: Request: GET /add?num1=5&num2=2
-info: Success: add => 5 & 2 = 7
-```
-
-**error.log**
-```
+info: Request: GET /add?num1=5&num2=3
+info: Success: add => 5 & 3 = 8
 error: Error: Cannot divide by zero
 ```
 
 ---
 
-## 📁 Project Structure
+## 🛡️ Error Handling Strategies (Part II Report)
 
-```
-calculator-microservice/
-│
-├── index.js           # Main server file with API routes
-├── logger.js          # Winston logger setup
-├── logs/
-│   ├── combined.log   # All logs
-│   └── error.log      # Error logs only
-└── README.md          # Documentation
-```
+Included in the repo is a 1-page PDF report: `ErrorHandlingReport.pdf`, which explains:
+
+- ✅ Circuit Breaker Pattern
+- ✅ Retry Pattern
+- ✅ Fallback Mechanism
+
+These are standard microservices patterns used to increase system resilience and reliability.
 
 ---
 
 ## 🙋‍♂️ Author
 
-- **Name:** Saketh Reddy Poreddy  
-- **Course:** SIT737 / SIT323 - Cloud Native App Dev  
-- **Task:** 4.1P - Building a Microservice  
-- **Institution:** Deakin University  
+- **Name:** Saketh Reddy Poreddy (GitHub: [@Tillu6](https://github.com/Tillu6))
+- **Course:** SIT737 – Cloud Native Application Development
+- **Task:** 4.2C – Enhanced Calculator Microservice
+- **Institution:** Deakin University
 
+---
+
+🎓 **Thank you for checking out this project!**  
