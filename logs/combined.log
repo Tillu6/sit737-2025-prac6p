@@ -3,3 +3,13 @@
 {"level":"info","message":"Calculator microservice running at http://localhost:3000","service":"calculator-microservice"}
 {"level":"info","message":"GET /favicon.ico","service":"calculator-microservice"}
 {"level":"info","message":"Calculator microservice running on http://localhost:3000","service":"calculator-microservice"}
+{"level":"info","message":"Calculator microservice running on http://localhost:3000","service":"calculator-microservice"}
+{"level":"info","message":"Request: GET /add?num1=10&num2=5","service":"calculator-microservice"}
+{"level":"info","message":"Success: add => 10 & 5 = 15","service":"calculator-microservice"}
+{"level":"info","message":"Request: GET /subtract?num1=10&num2=5","service":"calculator-microservice"}
+{"level":"info","message":"Success: subtract => 10 & 5 = 5","service":"calculator-microservice"}
+{"level":"info","message":"Request: GET /multiply?num1=10&num2=5","service":"calculator-microservice"}
+{"level":"info","message":"Success: multiply => 10 & 5 = 50","service":"calculator-microservice"}
+{"level":"info","message":"Request: GET /divide?num1=10&num2=5","service":"calculator-microservice"}
+{"level":"info","message":"Success: divide => 10 & 5 = 2","service":"calculator-microservice"}
+{"level":"info","message":"Request: GET /GET%20/health","service":"calculator-microservice"}
