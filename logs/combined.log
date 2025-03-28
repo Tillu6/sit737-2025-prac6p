@@ -1,0 +1,5 @@
+{"level":"info","message":"Calculator microservice running at http://localhost:3000","service":"calculator-microservice"}
+{"level":"info","message":"GET /","service":"calculator-microservice"}
+{"level":"info","message":"Calculator microservice running at http://localhost:3000","service":"calculator-microservice"}
+{"level":"info","message":"GET /favicon.ico","service":"calculator-microservice"}
+{"level":"info","message":"Calculator microservice running on http://localhost:3000","service":"calculator-microservice"}
