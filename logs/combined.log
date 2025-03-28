@@ -13,3 +13,10 @@
 {"level":"info","message":"Request: GET /divide?num1=10&num2=5","service":"calculator-microservice"}
 {"level":"info","message":"Success: divide => 10 & 5 = 2","service":"calculator-microservice"}
 {"level":"info","message":"Request: GET /GET%20/health","service":"calculator-microservice"}
+{"level":"info","message":"Calculator microservice running on http://localhost:3000","service":"calculator-microservice"}
+{"level":"info","message":"Request: GET /add?num1=a&num2=3","service":"calculator-microservice"}
+{"level":"error","message":"Error: Invalid numbers provided.","service":"calculator-microservice"}
+{"level":"info","message":"Request: GET /divide?num1=10&num2=0","service":"calculator-microservice"}
+{"level":"error","message":"Error: Cannot divide by zero","service":"calculator-microservice"}
+{"level":"info","message":"Request: GET /sqrt?num=-9","service":"calculator-microservice"}
+{"level":"info","message":"Request: GET /sqrt?num=-9","service":"calculator-microservice"}
