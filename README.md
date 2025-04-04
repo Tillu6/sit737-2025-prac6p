@@ -1,117 +1,148 @@
-```markdown
-# 📊 SIT737 - Calculator Microservice (4.2C)
+# 🚀 SIT737-2025-prac5p: Containerisation of a Simple Web Application Using Docker
 
-## ✨ Overview
+<div style="background-color:#0b3d91; color:#ffffff; padding:15px; text-align:center; font-family: sans-serif; font-weight: bold; border-radius: 5px;">
+  <span style="font-size: 1.2em;">🚀 SIT737-2025-prac5p</span> | <span style="font-size: 1.1em;">Containerisation</span> | <span style="font-size: 1.1em;">🐳 Docker</span>
+</div>
 
-This project extends the functionality of the calculator microservice developed in 4.1P. It adds advanced arithmetic operations such as exponentiation, square root, and modulo, along with robust error handling and Winston-based logging.
+## 💡 Overview
 
-✅ Built with Node.js and Express.js  
-✅ Enhanced with Winston logging  
-✅ Includes industry-standard error handling concepts
+This project **containerises** a simple web application (originally developed for the 4.2C task) using **Docker** and **Docker Compose**. It demonstrates how to build a Docker image, run containers with Compose, implement a health check, and push images to Docker Hub. The containerisation approach aligns with modern **cloud-native** practices and ensures a consistent environment across different systems.
 
-🔗 GitHub Repository: https://github.com/Tillu6/sit737-2025-prac4c
+**Key Features:**
+
+- **Dockerfile** for building the application image  
+- **docker-compose.yml** for service orchestration  
+- **Health checks** to monitor container status  
+- **Restart policy** for resilience  
+- **Push to Docker Hub** for easy distribution
+
+🔗 **GitHub Repository:** [https://github.com/Tillu6/sit737-2025-prac5p](https://github.com/Tillu6/sit737-2025-prac5p)
 
 ---
 
 ## ⚙️ Tech Stack
 
-- Node.js
-- Express.js
-- Winston (Logging)
-- Git & GitHub
+- **Node.js** (Web Application)
+- **Express.js** (Optional if you use Express for routing)
+- **Docker & Docker Compose** (Containerisation and orchestration)
+- **Git & GitHub** (Version control and collaboration)
 
 ---
 
-## 🚀 Getting Started
+## 🏁 Getting Started
 
 ### ✅ Prerequisites
-- Install [Node.js](https://nodejs.org/en/)
-- Install [Git](https://git-scm.com/)
-- Optional: Use [Postman](https://www.postman.com/) or your browser for testing
 
-### 📦 Installation & Running the App
+1. **Docker Desktop**:  
+   - [Download & Install](https://www.docker.com/products/docker-desktop)  
+   - Ensure Docker is running before you proceed.
+
+2. **Node.js** (if you want to run locally before containerising):  
+   - [Download & Install](https://nodejs.org/en/)
+
+3. **Git**:  
+   - [Download & Install](https://git-scm.com/)
+
+---
+
+## 📂 Project Structure
+
 ```bash
-git clone https://github.com/Tillu6/sit737-2025-prac4c
-cd sit737-2025-prac4c
-npm install
-mkdir logs
-node index.js
-```
-
-You’ll see:
-```
-🚀 Calculator microservice running on http://localhost:3000
+├── Dockerfile            # Instructions to build the Docker image
+├── docker-compose.yml    # Docker Compose configuration for multi-container (or single service) setup
+├── src/                  # Application source code (from 4.2C task)
+├── package.json          # Node.js dependencies and scripts
+├── README.md             # This README file
 ```
 
 ---
 
-## 🌐 API Endpoints
+## 🚀 Usage & Setup
 
-| Method | Endpoint | Description |
-|--------|----------|-------------|
-| GET | `/` | Welcome message |
-| GET | `/health` | Returns `{ status: "OK" }` |
-| GET | `/add?num1=10&num2=5` | Addition |
-| GET | `/subtract?num1=10&num2=5` | Subtraction |
-| GET | `/multiply?num1=10&num2=5` | Multiplication |
-| GET | `/divide?num1=10&num2=5` | Division |
-| GET | `/power?base=2&exp=3` | Exponentiation |
-| GET | `/sqrt?num=16` | Square Root |
-| GET | `/mod?num1=10&num2=3` | Modulo Operation |
+1. **Clone the Repository**  
+   ```bash
+   git clone https://github.com/Tillu6/sit737-2025-prac5p.git
+   cd sit737-2025-prac5p
+   ```
 
----
+2. **Build and Run the Container**  
+   ```bash
+   docker-compose up --build
+   ```
+   - This command builds the Docker image from the `Dockerfile`.
+   - Then it starts the container based on the configuration in `docker-compose.yml`.
 
-## 🧪 Sample Usage
-
-### ✅ Valid Requests
-- `GET /add?num1=7&num2=3` → `{ "result": 10 }`
-- `GET /power?base=2&exp=5` → `{ "result": 32 }`
-- `GET /sqrt?num=25` → `{ "result": 5 }`
-
-### ❌ Invalid Requests
-- `/add?num1=a&num2=3` → `{ "error": "Invalid numbers provided." }`
-- `/divide?num1=10&num2=0` → `{ "error": "Cannot divide by zero" }`
-- `/sqrt?num=-9` → `{ "error": "Invalid input for square root..." }`
+3. **Access the Application**  
+   - Open your browser and visit:  
+     [http://localhost:3000](http://localhost:3000)  
+   - You should see your web application running successfully.
 
 ---
 
-## 📂 Logging
+## 🌐 Health Check & Restart Policy
 
-Using Winston, logs are saved in the `logs/` folder:
+Your `docker-compose.yml` includes a **healthcheck** that verifies the container is responding on port **3000**. It does so by periodically running a `curl` command. If the container fails to respond, Docker attempts to restart it according to the `restart: on-failure` policy. This ensures **high availability** and **resilience**.
 
-| File | Description |
-|------|-------------|
-| `combined.log` | All logs (info + errors) |
-| `error.log` | Errors only |
-
-### 📝 Sample Logs
-```
-info: Request: GET /add?num1=5&num2=3
-info: Success: add => 5 & 3 = 8
-error: Error: Cannot divide by zero
-```
+**Health Check Highlights**:
+- **Interval**: 30 seconds  
+- **Timeout**: 10 seconds  
+- **Retries**: 3  
+- **Start Period**: 5 seconds  
 
 ---
 
-## 🛡️ Error Handling Strategies (Part II Report)
+## 📤 Pushing to Docker Hub
 
-Included in the repo is a 1-page PDF report: `ErrorHandlingReport.pdf`, which explains:
+1. **Log in to Docker Hub**  
+   ```bash
+   docker login
+   ```
+   Enter your **Docker Hub** credentials when prompted.
 
-- ✅ Circuit Breaker Pattern
-- ✅ Retry Pattern
-- ✅ Fallback Mechanism
+2. **Tag Your Image** (if not already tagged)  
+   ```bash
+   docker tag tillu018/sit737-2025-prac4c tillu018/sit737-2025-prac4c:latest
+   ```
 
-These are standard microservices patterns used to increase system resilience and reliability.
+3. **Push the Image**  
+   ```bash
+   docker push tillu018/sit737-2025-prac4c:latest
+   ```
+   Make sure the **repository** exists on Docker Hub. If not, create it under your Docker Hub account.
 
 ---
 
-## 🙋‍♂️ Author
+## 🧩 Troubleshooting
 
-- **Name:** Saketh Reddy Poreddy (GitHub: [@Tillu6](https://github.com/Tillu6))
-- **Course:** SIT737 – Cloud Native Application Development
-- **Task:** 4.2C – Enhanced Calculator Microservice
-- **Institution:** Deakin University
+| Issue                                    | Possible Fix                                                                                              |
+|------------------------------------------|------------------------------------------------------------------------------------------------------------|
+| **Port 3000 already in use**             | Change the port in `docker-compose.yml` (e.g., `3001:3000`) or free up port 3000 by stopping the other process. |
+| **Docker not running / Connection error**| Start or restart **Docker Desktop**, ensure you see “Docker is running.”                                   |
+| **Health check fails**                   | Check container logs with `docker logs <container_id>`, ensure the app is listening on the correct port.  |
+| **Push access denied**                   | Make sure you are logged in to Docker Hub and have permission to push to that repository.                 |
 
 ---
 
-🎓 **Thank you for checking out this project!**  
+## 📝 Project History
+
+- **Task 4.2C**: Developed the initial web application with Node.js.
+- **Task 5.1P**: Containerised the application using Docker & Docker Compose, added health checks, and automated restarts.
+
+---
+
+## 🙋 Author
+
+**Name:** Saketh Reddy Poreddy (GitHub: [@Tillu6](https://github.com/Tillu6))  
+**Course:** SIT737 – Cloud Native Application Development  
+**Institution:** Deakin University  
+
+> **Thank you** for exploring this containerised application! If you have any feedback or suggestions, feel free to open an issue or submit a pull request.  
+
+---  
+
+**Happy Containerising!**  
+<p align="center">
+  <div style="background-color:#2496ED; color:#ffffff; padding:15px; text-align:center; font-family: sans-serif; font-weight: bold; border-radius: 5px;">
+    🐳 Docker Makes It Easy! 🚀
+  </div>
+</p>
