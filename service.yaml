@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: node-app-service
+spec:
+  type: NodePort
+  selector:
+    app: node-app
+  ports:
+    - protocol: TCP
+      port: 3000        # Port the service listens on within the cluster
+      targetPort: 3000  # The port your container exposes
+      nodePort: 32000   # Port on your host to access the service externally
